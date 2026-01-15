@@ -343,7 +343,7 @@ export default function Home() {
             >
               <div className="text-center">
                 <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/696935c87c268bcdcff700ea/9de3d8a2b_Sellonetwhitelogo.png" 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/696935c87c268bcdcff700ea/bfa835285_Screenshot2026-01-15at212905.png" 
                   alt="Bezalel Gleiser - Founder & CEO" 
                   className="w-48 h-48 rounded-full object-cover mx-auto mb-4 border-4 border-[#c9a227]/20"
                 />
