@@ -14,7 +14,7 @@ const fadeInUp = {
 };
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('food');
+  const [activeTab, setActiveTab] = useState('defense');
 
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -39,6 +39,11 @@ export default function Home() {
   ];
 
   const technologies = {
+    defense: {
+      title: "Defense Technology",
+      description: "Sellonet invests in cutting-edge defense technologies and industrial companies, bridging innovation with strategic defense applications. We connect advanced tech companies with defense sector opportunities, facilitating partnerships that drive national security and technological advancement.",
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80"
+    },
     food: {
       title: "Food Technology",
       description: "From mobile applications to new food categories, our emerging startups have plenty to offer. Sellonet understands your needs and finds the right solutions, connecting you with leaders in the industry so you can benefit from new products, strategic partnerships and business opportunities.",
@@ -68,7 +73,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img 
-              src="https://uvpgfbnelppwyjlgcusn.supabase.co/storage/v1/object/public/app-uploads/ba23f32d-1dbb-4d78-b0be-25e6f8b4cc12/sellonet-logo.png" 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/696935c87c268bcdcff700ea/9de3d8a2b_Sellonetwhitelogo.png" 
               alt="Sellonet" 
               className="h-10 w-auto"
             />
@@ -94,9 +99,9 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <img 
-              src="https://uvpgfbnelppwyjlgcusn.supabase.co/storage/v1/object/public/app-uploads/ba23f32d-1dbb-4d78-b0be-25e6f8b4cc12/sellonet-logo.png" 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/696935c87c268bcdcff700ea/9de3d8a2b_Sellonetwhitelogo.png" 
               alt="Sellonet" 
-              className="h-16 md:h-20 w-auto mx-auto mb-8 brightness-0 invert"
+              className="h-16 md:h-20 w-auto mx-auto mb-8"
             />
           </motion.div>
           
@@ -215,6 +220,7 @@ export default function Home() {
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="w-full flex flex-wrap justify-center gap-2 bg-transparent mb-12 h-auto">
               {[
+                { value: 'defense', label: 'Defense Technology', icon: Building2 },
                 { value: 'food', label: 'Food Technology', icon: Utensils },
                 { value: 'retail', label: 'Retail Innovation', icon: ShoppingBag },
                 { value: 'smart', label: 'Smart Platforms', icon: Cpu },
@@ -361,7 +367,7 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-16">
+          <div className="max-w-2xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -374,9 +380,11 @@ export default function Home() {
                   <Phone className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-900 mb-2">Business Phone</h4>
-                  <p className="text-slate-600">+972-72-211-7888</p>
-                  <p className="text-slate-600">+1-917-727-1789</p>
+                  <h4 className="font-semibold text-slate-900 mb-2">Contact Numbers</h4>
+                  <p className="text-slate-600">Office: +972-72-211-7888</p>
+                  <p className="text-slate-600">Mobile: +972-52-3062828</p>
+                  <p className="text-slate-600">US: +1-914-294-3369</p>
+                  <p className="text-slate-600">UK: +44-203-807-7925</p>
                 </div>
               </div>
               
@@ -397,35 +405,9 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-slate-900 mb-2">Email</h4>
-                  <p className="text-slate-600">info@sellonet.com</p>
                   <p className="text-slate-600">bezalel@sellonet.com</p>
                 </div>
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <Card className="bg-white border-0 shadow-xl">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-semibold text-slate-900 mb-6">Send Us A Message</h3>
-                  <form className="space-y-5">
-                    <div className="grid md:grid-cols-2 gap-5">
-                      <Input placeholder="Your Name" className="bg-slate-50 border-slate-200 focus:border-[#c9a227] focus:ring-[#c9a227]" />
-                      <Input placeholder="Your Email" type="email" className="bg-slate-50 border-slate-200 focus:border-[#c9a227] focus:ring-[#c9a227]" />
-                    </div>
-                    <Input placeholder="Subject" className="bg-slate-50 border-slate-200 focus:border-[#c9a227] focus:ring-[#c9a227]" />
-                    <Textarea placeholder="Your Message" rows={4} className="bg-slate-50 border-slate-200 focus:border-[#c9a227] focus:ring-[#c9a227]" />
-                    <Button className="w-full bg-[#1e3a5f] hover:bg-[#2d4a6f] text-white py-6">
-                      Send Message
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
             </motion.div>
           </div>
         </div>
@@ -436,9 +418,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <img 
-              src="https://uvpgfbnelppwyjlgcusn.supabase.co/storage/v1/object/public/app-uploads/ba23f32d-1dbb-4d78-b0be-25e6f8b4cc12/sellonet-logo.png" 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/696935c87c268bcdcff700ea/9de3d8a2b_Sellonetwhitelogo.png" 
               alt="Sellonet" 
-              className="h-10 w-auto brightness-0 invert"
+              className="h-10 w-auto"
             />
             <p className="text-slate-400 text-sm">
               © {new Date().getFullYear()} Sellonet Ltd. All rights reserved.
