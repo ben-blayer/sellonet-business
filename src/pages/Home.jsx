@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ChevronDown, Building2, Briefcase, Factory, Utensils, ShoppingBag, Cpu, Wifi, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, Building2, Briefcase, Factory, Utensils, ShoppingBag, Cpu, Wifi, Mail, Phone, MapPin, ArrowRight, Menu, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -15,9 +15,11 @@ const fadeInUp = {
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('defense');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMobileMenuOpen(false);
   };
 
   const industries = [
@@ -75,7 +77,7 @@ export default function Home() {
             <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/696935c87c268bcdcff700ea/9de3d8a2b_Sellonetwhitelogo.png" 
               alt="Sellonet" 
-              className="h-10 w-auto"
+              className="h-12 w-auto"
             />
           </div>
           <div className="hidden md:flex items-center gap-8">
@@ -84,7 +86,32 @@ export default function Home() {
             <button onClick={() => scrollToSection('about')} className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">About</button>
             <button onClick={() => scrollToSection('contact')} className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium">Contact</button>
           </div>
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden text-slate-900 p-2"
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-white border-t border-slate-100 overflow-hidden"
+            >
+              <div className="px-6 py-4 space-y-4">
+                <button onClick={() => scrollToSection('industries')} className="block w-full text-left text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium py-2">Industries</button>
+                <button onClick={() => scrollToSection('technologies')} className="block w-full text-left text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium py-2">Technologies</button>
+                <button onClick={() => scrollToSection('about')} className="block w-full text-left text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium py-2">About</button>
+                <button onClick={() => scrollToSection('contact')} className="block w-full text-left text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium py-2">Contact</button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Hero Section */}
@@ -93,22 +120,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1e3a5f]/50 to-[#1e3a5f]"></div>
         
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/696935c87c268bcdcff700ea/9de3d8a2b_Sellonetwhitelogo.png" 
-              alt="Sellonet" 
-              className="h-16 md:h-20 w-auto mx-auto mb-8"
-            />
-          </motion.div>
-          
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
+            transition={{ duration: 0.8 }}
             className="text-[#c9a227] text-sm md:text-base tracking-[0.3em] uppercase mb-6"
           >
             Discover new game changing technologies
@@ -117,7 +132,7 @@ export default function Home() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
             className="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-tight mb-8"
           >
             Give Your Company
@@ -127,7 +142,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
           >
             <Button 
               onClick={() => scrollToSection('industries')}
@@ -142,7 +157,7 @@ export default function Home() {
         <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
+          transition={{ delay: 1, duration: 0.8 }}
           onClick={() => scrollToSection('industries')}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/60 hover:text-white transition-colors animate-bounce"
         >
@@ -290,10 +305,10 @@ export default function Home() {
       {/* About Section */}
       <section id="about" className="py-24 md:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="mb-16">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
@@ -301,12 +316,50 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-light text-slate-900 mb-6">
                 Bringing Cutting Edge Technology <span className="font-semibold">To Your Door</span>
               </h2>
-              <p className="text-slate-600 text-lg leading-relaxed mb-6">
+              <p className="text-slate-600 text-lg leading-relaxed">
                 Bridging new technologies, investment and various markets and industries, Sellonet helps companies launch new solutions and leverage technology for growth.
               </p>
-              <p className="text-slate-600 leading-relaxed mb-6">
+            </motion.div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-16 items-start">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <p className="text-slate-600 leading-relaxed">
                 Sellonet is a boutique company founded in 2006 by Bezalel Gleiser, MBA, utilizing an extensive global network and a deep understanding of technology and international trade to bridge between startups with cutting edge technologies and companies that have developed unique and innovative products to large corporates and retail companies.
               </p>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex justify-center"
+            >
+              <div className="text-center">
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/696935c87c268bcdcff700ea/9de3d8a2b_Sellonetwhitelogo.png" 
+                  alt="Bezalel Gleiser - Founder & CEO" 
+                  className="w-48 h-48 rounded-full object-cover mx-auto mb-4 border-4 border-[#c9a227]/20"
+                />
+                <p className="text-slate-900 font-semibold text-lg">Bezalel Gleiser</p>
+                <p className="text-slate-600">Founder & CEO</p>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-16 items-center mt-16">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
             </motion.div>
             
             <motion.div
@@ -415,17 +468,10 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-12 bg-[#1e3a5f] text-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/696935c87c268bcdcff700ea/9de3d8a2b_Sellonetwhitelogo.png" 
-              alt="Sellonet" 
-              className="h-10 w-auto"
-            />
-            <p className="text-slate-400 text-sm">
-              © {new Date().getFullYear()} Sellonet Ltd. All rights reserved.
-            </p>
-          </div>
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p className="text-slate-400 text-sm">
+            © {new Date().getFullYear()} Sellonet Ltd. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
