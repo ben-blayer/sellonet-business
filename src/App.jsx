@@ -16,7 +16,7 @@ const LayoutWrapper = ({ children, currentPageName }) => Layout ?
 function App() {
   return (
     <QueryClientProvider client={queryClientInstance}>
-      <Router basename="/sellonet-business">
+      <Router>
         <Routes>
           <Route path="/" element={
             <LayoutWrapper currentPageName={mainPageKey}>
